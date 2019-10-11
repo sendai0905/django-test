@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <title>{% block title %}My amazing site{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <h1>ブログです</h1>
+    </header>
+    <nav>
+        <ul>
+            {% block nav %}
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'blog:post' %}">記事を投稿する</a></li>
+            {% endblock %}
+        </ul>
+    </nav>
+    <article>
+        {% block content %}
+        {% endblock %}
+    </article>
+    <aside>
+        <section>
+            <h1>記事検索</h1>
+            <ul>
+                {% comment %}
+                <form method="POST" action="{% url 'blog:search' %}">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <input type="submit" value="検索">
+                    </div>
+                </form>
+                {% endcomment %}
+            </ul>
+        </section>
+        <section>
+            <h1>最新記事</h1>
+            <ul>
+                {% block recent %}
+                {% endblock %}
+            </ul>
+        </section>
+        <section>
+            <h1>アーカイブ</h1>
+            <ul>
+                {% block archive %}
+                {% endblock %}
+            </ul>
+        </section>
+        <section>
+            <h1>カテゴリー</h1>
+            <ul>
+                {% block category %}
+                {% endblock %}
+            </ul>
+        </section>
+    </aside>
+    <footer>
+    </footer>
+</body>
+
+</html>
