@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for article in article_list reversed %}
+<section>
+    <h2><a href='{% url "blog:article" article.id %}'>{{ article.title }}</a></h2>
+    <div>{{ article.detail | safe | linebreaksbr}}</div>
+</section>
+{% endfor %}
+{% endblock %}

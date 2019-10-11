@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    本当に削除しますか？
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="削除する">
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+    <h1>{{ object.title }}</h1>
+    <div>{{ object.detail }}</div>
+    <div>{{ object.pub_date }}</div>
+    <div><a href="{% url 'blog:delete' object.id %}">記事を削除する</a></div>
+</section>
+{% endblock %}
