@@ -4,5 +4,6 @@
     <div>{{ object.detail }}</div>
     <div>{{ object.pub_date }}</div>
     <div><a href="{% url 'blog:delete' object.id %}">記事を削除する</a></div>
+    <div>{{ object.age }}</div>
 </section>
 {% endblock %}

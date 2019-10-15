@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy
-from rest_framework import viewsets, filters
-from blog.models.attribute import User, Category
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, FormView
+from rest_framework import filters, viewsets
+
+from blog.forms import ArticleForm, SearchForm
 from blog.models.article import Article
-from blog.forms import ArticleForm
-from blog.rfw.serializers import UserSerializer, CategorySerializer, ArticleSerializer
+from blog.models.attribute import Category, User
+from blog.rfw.serializers import (ArticleSerializer, CategorySerializer,
+                                  UserSerializer)
 
 
 class HomeView(ListView):
@@ -28,6 +30,13 @@ class DeleteArticleView(DeleteView):
     template_name = 'delete.html'
     model = Article
     success_url = reverse_lazy('blog:home')
+
+
+class SearchArticleView(FormView):
+    template_name = 'search.html'
+    form_class = SearchForm
+    model = Article
+    # success_url = reverse_lazy('blog:search_result')
 
 
 class UserViewSet(viewsets.ModelViewSet):

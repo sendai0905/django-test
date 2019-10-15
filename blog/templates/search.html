@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="POST" action="{% url 'blog:search' %}">
-    {% csrf_token %}
-    <div>
-        <input type="text">
-    </div>
-    <div>
-        <input type="submit" value="検索">
-    </div>
-</form>
+<section>
+    <form method="POST" action="{% url 'blog:search_result' %}">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">search</button>
+    </form>
+</section>
 {% endblock %}

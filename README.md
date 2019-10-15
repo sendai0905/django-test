@@ -20,3 +20,57 @@
 - [x] 改行がきくようにする
       {{ article.detail | linebreaksbr }}
 - [ ] 画像を挿入できるようにする
+
+# メモ
+
+## 気づき
+
+- view と紐付いていないモデルのデータを引っ張ってくる
+
+  ```python
+  @property
+  def test(self):
+    return Unko.objects.get(id=1)
+  ```
+
+  みたいな感じで、html は
+
+  ```html
+  {{ test }}
+  ```
+
+  でデータを引っ張ってこれる
+
+## genericview について
+
+### 継承元
+
+- TemplateView
+  - TemplateResponseMixin
+    - render_to_response  
+       このビューの `response_class`を使用して、指定されたコンテキストでレンダリングされたテンプレートで応答を返します。  
+            response_kwargs を応答クラスのコンストラクターに渡します。
+    - get_template_names  
+      リクエストに使用されるテンプレート名のリストを返します。リストを返す必要があります。 render_to_response（）がオーバーライドされている場合は呼び出されません。
+  - ContextMixin
+    get_context_data（）が受け取ったキーワード引数をテンプレートコンテキストとして渡すデフォルトのコンテキストミックスイン。
+    - get_context_data
+  - View  
+    たくさん
+- DetailView  
+   オブジェクトの「詳細」ビューをレンダリングします。  
+        デフォルトでは、これは `self.queryset`からルックアップされたモデルインスタンスですが、  
+       view は、 `self.get_object（）`をオーバーライドすることにより、* any *オブジェクトの表示をサポートします。
+  - SingleObjectTemplateResponseMixin
+    - get_template_names (override)  
+       リクエストに使用されるテンプレート名のリストを返します。 render_to_response（）がオーバーライドされている場合は呼び出されません。次のリストを返します。  
+              *ビューの `template_name`の値（提供されている場合）  
+              *ビューが操作しているオブジェクトインスタンスの `template_name_field`フィールドの内容（利用可能な場合）  
+              \* `<app_label> / <model_name> <template_name_suffix> .html`
+    - TemplateResponseMixin
+  - BaseDetailView
+- ListView
+- FormView
+- CreateView
+- UpdateView
+- DeleteView

@@ -27,3 +27,8 @@ class ArticleAdmin(admin.ModelAdmin):
         'category',
     )
     list_filter = ('pub_date', 'author', 'category')
+
+
+# @admin.register(Unko)
+# class UnkoAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'text')

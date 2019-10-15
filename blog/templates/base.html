@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
+<meta charset="utf-8">
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
@@ -15,7 +16,8 @@
         <ul>
             {% block nav %}
             <li><a href="/">Home</a></li>
-            <li><a href="{% url 'blog:post' %}">記事を投稿する</a></li>
+            <li><a href="{% url 'blog:post' %}">投稿する</a></li>
+            <li><a href="{% url 'blog:search' %}">検索する</a></li>
             {% endblock %}
         </ul>
     </nav>
